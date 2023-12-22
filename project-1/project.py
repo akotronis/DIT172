@@ -84,12 +84,14 @@ class Person:
         and store it as instance attribute using `SecretBox` class.
         `SecretBox` class:
         - it's input `key` must be 32 bytes
-        - uses XSalsa20-Poly1305 for encryption
+        - uses XSalsa20 stream cipher for encryption
         - include a 16 byte authenticator in encrypted message
           which is checked on decryption
           Authentication algorithm: Poly1305 MAC
         References:
         - https://pynacl.readthedocs.io/en/latest/secret/#example
+        - https://libsodium.gitbook.io/doc/advanced/stream_ciphers/xsalsa20
+        - https://pynacl.readthedocs.io/en/latest/secret/#reference
         - https://en.wikipedia.org/wiki/Poly1305
         """
         sbox = SecretBox(self.derived_key)
@@ -106,7 +108,7 @@ class Person:
         self.tag = blake2b(self.encrypted_message)
         print(f'{self.name} created message integrity verification tag: {self.tag}')
     
-    def get_requirements_to_decrypt(self, encrypted_message, other_tag, other_public):
+    def get_requirements(self, encrypted_message, other_tag, other_public):
         """
         Method that gets required information from another person and
         stores it to class instance in order to perform integrity
@@ -137,7 +139,7 @@ class Person:
         an encrypted message received from another person and tries to
         decrypt it using `SecretBox` class
         References:
-        - https://pynacl.readthedocs.io/en/latest/hashing/#integrity-check-examples
+        - https://pynacl.readthedocs.io/en/latest/secret/#secret-key-encryption
         """
         try:
             decrypted_message = SecretBox(self.derived_key).decrypt(self.encrypted_message)
@@ -194,8 +196,8 @@ alice.make_tag()
 ################################################
 
 print(f' BOB '.center(80, '='))
-# Bob takes requirements to decrypt message
-bob.get_requirements_to_decrypt(alice.encrypted_message, alice.tag, alice.public)
+# Bob takes requirements to decrypt message/verify integrity
+bob.get_requirements(alice.encrypted_message, alice.tag, alice.public)
 
 # Bob makes common key from Alice's public key
 bob.make_common_secret(alice.public)
