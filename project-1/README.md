@@ -1,4 +1,4 @@
-## DIT172 | Report on Project-1 | itp22104 | .../12/2023
+## DIT172 | Report on Project-1 | itp22104 | 22/12/2023
 
 ### Γενικά
 
