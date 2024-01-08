@@ -1,7 +1,6 @@
 # ENISA Threat Landscape 2023 - Threats Against Data
 ## DIT172 | Project 2 | itp22104
 
-### General
 Τα τελευταία χρόνια με την διεύρυνση της χρήσης του διαδικτύου αλλά και του γενικότερου ψηφιακού μετασχηματισμού παρατηρείται μια τεράστια αύξηση του όγκου των δεδομένων στους διάφορους τομείς παραγωγής. 
 
 Η κατάσταση αυτή αποτυπώνεται γλαφυρά από τη δήλωση του Βρετανού μαθηματικού Clive Humby το 2006 σε συνέδριο της Association of National Advertisers: _data is the new oil_ αλλά και τη δημοσίευση στο Economist το 2017 με τίτλο _The world’s most valuable resource is no longer oil, but data_.
